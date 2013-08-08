@@ -40,7 +40,7 @@ public class TicTacToeDriver extends JFrameDriver
         super(new GesturePerformer(), new AWTEventQueueProber(), named(MAIN_WINDOW_NAME), showingOnScreen());
     }
 
-    public void gameStarted()
+    public void startGame()
     {
         buttonStart().click();
     }
@@ -61,7 +61,7 @@ public class TicTacToeDriver extends JFrameDriver
         return new JLabelDriver(this, named(MainWindow.MAIN_WINDOW_STATUS_LABEL));
     }
 
-    public void gameEnded()
+    public void endGame()
     {
         buttonEnd().click();
     }

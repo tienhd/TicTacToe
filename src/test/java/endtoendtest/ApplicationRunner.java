@@ -12,8 +12,23 @@ public class ApplicationRunner
     public void startGame()
     {
         initTicTacToe();
-        ticTacToeDriver.gameStarted();
+        ticTacToeDriver.startGame();
 
+    }
+
+    public void showsGameStatusStarted()
+    {
+        ticTacToeDriver.showStatus("START");
+    }
+
+    public void endGame()
+    {
+        ticTacToeDriver.endGame();
+    }
+
+    public void showsGameStatusEnded()
+    {
+        ticTacToeDriver.showStatus("END");
     }
 
     private void initTicTacToe()
@@ -31,20 +46,5 @@ public class ApplicationRunner
 
         ticTacToeDriver = new TicTacToeDriver(3000);
         ticTacToeDriver.hasTitle(MainWindow.MAIN_WINDOW_NAME);
-    }
-
-    public void checkStartGameStatus()
-    {
-        ticTacToeDriver.showStatus("START");
-    }
-
-    public void endGame()
-    {
-        ticTacToeDriver.gameEnded();
-    }
-
-    public void checkEndGameStatus()
-    {
-        ticTacToeDriver.showStatus("END");
     }
 }

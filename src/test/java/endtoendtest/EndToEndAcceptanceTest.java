@@ -15,8 +15,8 @@ public class EndToEndAcceptanceTest
     public void testStartGameThenEndGame()
     {
         application.startGame();
-        application.checkStartGameStatus();
+        application.showsGameStatusStarted();
         application.endGame();
-        application.checkEndGameStatus();
+        application.showsGameStatusEnded();
     }
 }
