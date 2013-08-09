@@ -70,4 +70,26 @@ public class TicTacToeDriver extends JFrameDriver
     {
         return new JButtonDriver(this, JButton.class, named(MainWindow.MAIN_WINDOW_END_BUTTON));
     }
+
+    public void doTickCell(String coordinate)
+    {
+        buttonCell(coordinate).click();
+
+    }
+
+    private JButtonDriver buttonCell(String coordinate)
+    {
+        return new JButtonDriver(this, JButton.class, named("btnCell" + coordinate));
+    }
+
+    public void showsCellChar(String coordinate, String status)
+    {
+        JButtonDriver jButtonDriver = buttonCell(coordinate);
+        jButtonDriver.hasText(equalTo(status));
+    }
+
+    public void exitGame()
+    {
+        this.dispose();
+    }
 }

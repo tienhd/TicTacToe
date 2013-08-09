@@ -1,7 +1,5 @@
 package endtoendtest;
 
-import javax.swing.*;
-
 /**
  * User: tienhd
  * Date: 8/8/13
@@ -20,13 +18,14 @@ public class MainApp
     {
         try
         {
-            SwingUtilities.invokeAndWait(new Runnable()
-            {
-                public void run()
-                {
-                    ui = new MainWindow();
-                }
-            });
+//            SwingUtilities.invokeAndWait(new Runnable()
+//            {
+//                public void run()
+//                {
+            ui = new MainWindow();
+            ui.setVisible(true);
+//                }
+//            });
         }
         catch (Exception ex)
         {

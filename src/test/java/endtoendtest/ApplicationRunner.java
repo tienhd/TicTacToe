@@ -33,18 +33,24 @@ public class ApplicationRunner
 
     private void initTicTacToe()
     {
-        Thread thread = new Thread("Test Tic Tac Toe Application")
-        {
-            @Override
-            public void run()
-            {
-                MainApp.main();
-            }
-        };
-        thread.setDaemon(true);
-        thread.start();
-
+        MainApp.main();
         ticTacToeDriver = new TicTacToeDriver(3000);
         ticTacToeDriver.hasTitle(MainWindow.MAIN_WINDOW_NAME);
+    }
+
+    public void doTickCell(String coordinate)
+    {
+        ticTacToeDriver.doTickCell(coordinate);
+
+    }
+
+    public void showsCellChar(String coordinate, String status)
+    {
+        ticTacToeDriver.showsCellChar(coordinate, status);
+    }
+
+    public void exitGame()
+    {
+        ticTacToeDriver.exitGame();
     }
 }
