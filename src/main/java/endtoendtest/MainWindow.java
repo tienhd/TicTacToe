@@ -39,6 +39,7 @@ public class MainWindow extends JFrame
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(800, 600);
         setVisible(true);
+        lbStatus.setFont(new Font("", Font.BOLD, 30));
         btnStartGame.addActionListener(new ActionListener()
         {
             @Override

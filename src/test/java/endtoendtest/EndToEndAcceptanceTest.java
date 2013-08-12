@@ -62,6 +62,5 @@ public class EndToEndAcceptanceTest
         application.doTickCell("0_1");
         application.showsCellChar("0_1", "X");
         application.checksStatusEqual("GAME FINISH!");
-        application.endGame();
     }
 }

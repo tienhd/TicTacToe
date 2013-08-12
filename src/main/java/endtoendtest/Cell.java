@@ -1,8 +1,7 @@
 package endtoendtest;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,7 +10,7 @@ import java.awt.event.ActionListener;
  * Time: 9:35 AM
  * To change this template use File | Settings | File Templates.
  */
-public class Cell extends JButton implements ActionListener
+public class Cell extends JButton
 {
     private Controller controller;
 
@@ -19,27 +18,7 @@ public class Cell extends JButton implements ActionListener
     {
         super();
         this.controller = controller;
-        addActionListener(this);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent actionEvent)
-    {
-        if (controller.isFlag() == true)
-        {
-            this.setText("X");
-            controller.setFlag(false);
-        }
-        else
-        {
-            this.setText("O");
-            controller.setFlag(true);
-        }
-        controller.setNumCellChecked(controller.getNumCellChecked() + 1);
-
-        if (controller.getNumCellChecked() == 9)
-        {
-            controller.showMessage("GAME FINISH!");
-        }
+        this.setFont(new Font("", Font.BOLD, 30));
+        addActionListener(controller);
     }
 }

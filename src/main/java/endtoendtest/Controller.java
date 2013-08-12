@@ -1,5 +1,8 @@
 package endtoendtest;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  * Created with IntelliJ IDEA.
  * User: thinhdd
@@ -7,7 +10,7 @@ package endtoendtest;
  * Time: 10:36 AM
  * To change this template use File | Settings | File Templates.
  */
-public class Controller
+public class Controller implements ActionListener
 {
     boolean flag = true;
     int numCellChecked = 0;
@@ -47,35 +50,36 @@ public class Controller
             {
                 cells[i][j] = new Cell(this);
                 cells[i][j].setName("btnCell" + i + "_" + j);
-                System.out.println(cells[i][j].getName());
                 mainWindow.getPanelBoard().add(cells[i][j]);
             }
         }
     }
 
-
-    public boolean isFlag()
-    {
-        return flag;
-    }
-
-    public void setFlag(boolean flag)
-    {
-        this.flag = flag;
-    }
-
-    public int getNumCellChecked()
-    {
-        return numCellChecked;
-    }
-
-    public void setNumCellChecked(int numCellChecked)
-    {
-        this.numCellChecked = numCellChecked;
-    }
-
     public void showMessage(String message)
     {
         mainWindow.getLbStatus().setText(message);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e)
+    {
+        Cell cell = (Cell)e.getSource();
+        if (flag == true)
+        {
+            cell.setText("X");
+            flag = false;
+        }
+        else
+        {
+            cell.setText("O");
+            flag = true;
+        }
+        numCellChecked++;
+        cell.setEnabled(false);
+        mainWindow.getLbStatus().setText("Symbol  " + cell.getText() + "  checked!");
+        if (numCellChecked == 9)
+        {
+            showMessage("GAME FINISH!");
+        }
     }
 }

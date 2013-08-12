@@ -11,28 +11,6 @@ public class ApplicationRunner
 {
     private TicTacToeDriver ticTacToeDriver;
 
-    public void startGame()
-    {
-        initTicTacToe();
-        ticTacToeDriver.startGame();
-
-    }
-
-    public void showsGameStatusStarted()
-    {
-        ticTacToeDriver.showStatus("START");
-    }
-
-    public void endGame()
-    {
-        ticTacToeDriver.endGame();
-    }
-
-    public void showsGameStatusEnded()
-    {
-        ticTacToeDriver.showStatus("END");
-    }
-
     private void initTicTacToe()
     {
         MainApp.main();
@@ -40,20 +18,40 @@ public class ApplicationRunner
         ticTacToeDriver.hasTitle(MainWindow.MAIN_WINDOW_NAME);
     }
 
-    public void doTickCell(String coordinate)
+    public void startGame()
     {
-        ticTacToeDriver.doTickCell(coordinate);
-
+        initTicTacToe();
+        ticTacToeDriver.startGame();
     }
 
-    public void showsCellChar(String coordinate, String status)
+    public void endGame()
     {
-        ticTacToeDriver.showsCellChar(coordinate, status);
+        ticTacToeDriver.endGame();
     }
 
     public void exitGame()
     {
         ticTacToeDriver.exitGame();
+    }
+
+    public void showsGameStatusStarted()
+    {
+        ticTacToeDriver.showStatus("START");
+    }
+
+    public void showsGameStatusEnded()
+    {
+        ticTacToeDriver.showStatus("END");
+    }
+
+    public void doTickCell(String coordinate)
+    {
+        ticTacToeDriver.doTickCell(coordinate);
+    }
+
+    public void showsCellChar(String coordinate, String status)
+    {
+        ticTacToeDriver.showsCellChar(coordinate, status);
     }
 
     public void checksStatusEqual(String text)
