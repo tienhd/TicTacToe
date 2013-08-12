@@ -7,34 +7,8 @@ package endtoendtest;
  */
 public class MainApp
 {
-    private MainWindow ui;
-
-    public MainApp()
-    {
-        startUserInterface();
-    }
-
-    private void startUserInterface()
-    {
-        try
-        {
-//            SwingUtilities.invokeAndWait(new Runnable()
-//            {
-//                public void run()
-//                {
-            ui = new MainWindow();
-            ui.setVisible(true);
-//                }
-//            });
-        }
-        catch (Exception ex)
-        {
-            ex.printStackTrace();
-        }
-    }
-
     public static void main()
     {
-        MainApp main = new MainApp();
+        new Controller();
     }
 }

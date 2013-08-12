@@ -13,8 +13,7 @@ import java.awt.event.ActionListener;
  */
 public class Cell extends JButton implements ActionListener
 {
-
-    Controller controller = new Controller();
+    private Controller controller;
 
     public Cell(Controller controller)
     {
@@ -29,18 +28,18 @@ public class Cell extends JButton implements ActionListener
         if (controller.isFlag() == true)
         {
             this.setText("X");
-        }
-        else
-        {
-            this.setText("O");
-        }
-        if (controller.isFlag() == true)
-        {
             controller.setFlag(false);
         }
         else
         {
+            this.setText("O");
             controller.setFlag(true);
+        }
+        controller.setNumCellChecked(controller.getNumCellChecked() + 1);
+
+        if (controller.getNumCellChecked() == 9)
+        {
+            controller.showMessage("GAME FINISH!");
         }
     }
 }

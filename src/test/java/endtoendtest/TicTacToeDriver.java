@@ -1,16 +1,14 @@
 package endtoendtest;
 
-import com.objogate.wl.Prober;
 import com.objogate.wl.swing.AWTEventQueueProber;
-import com.objogate.wl.swing.ComponentSelector;
 import com.objogate.wl.swing.driver.JButtonDriver;
 import com.objogate.wl.swing.driver.JFrameDriver;
 import com.objogate.wl.swing.driver.JLabelDriver;
+import com.objogate.wl.swing.driver.JOptionPaneDriver;
 import com.objogate.wl.swing.gesture.GesturePerformer;
 
 import javax.swing.*;
 
-import static endtoendtest.MainWindow.MAIN_WINDOW_NAME;
 import static org.hamcrest.Matchers.equalTo;
 
 /**
@@ -20,11 +18,6 @@ import static org.hamcrest.Matchers.equalTo;
  */
 public class TicTacToeDriver extends JFrameDriver
 {
-    public TicTacToeDriver(GesturePerformer gesturePerformer, ComponentSelector<JFrame> componentSelector, Prober prober)
-    {
-        super(gesturePerformer, componentSelector, prober);
-    }
-
     public TicTacToeDriver(int timeoutMillis)
     {
         super(new GesturePerformer(),
@@ -34,31 +27,37 @@ public class TicTacToeDriver extends JFrameDriver
                 new AWTEventQueueProber(timeoutMillis, 100));
     }
 
-    @SuppressWarnings("unchecked")
-    public TicTacToeDriver()
-    {
-        super(new GesturePerformer(), new AWTEventQueueProber(), named(MAIN_WINDOW_NAME), showingOnScreen());
-    }
-
-    public void startGame()
-    {
-        buttonStart().click();
-    }
+    // =============== DRIVER ===================================================================
 
     private JButtonDriver buttonStart()
     {
         return new JButtonDriver(this, JButton.class, named(MainWindow.MAIN_WINDOW_START_BUTTON));
     }
 
-    public void showStatus(String status)
+    private JButtonDriver buttonEnd()
     {
-        JLabelDriver lbStatusDriver = labelStatus();
-        lbStatusDriver.hasText(equalTo(status));
+        return new JButtonDriver(this, JButton.class, named(MainWindow.MAIN_WINDOW_END_BUTTON));
     }
 
-    private JLabelDriver labelStatus()
+    public JLabelDriver labelStatus()
     {
         return new JLabelDriver(this, named(MainWindow.MAIN_WINDOW_STATUS_LABEL));
+    }
+
+    private JButtonDriver buttonCell(String coordinate)
+    {
+        return new JButtonDriver(this, JButton.class, named("btnCell" + coordinate));
+    }
+
+    public JOptionPaneDriver jOptionPaneFinishGame()
+    {
+        return new JOptionPaneDriver(this, JOptionPane.class);
+    }
+
+    // ========================================================
+    public void startGame()
+    {
+        buttonStart().click();
     }
 
     public void endGame()
@@ -66,9 +65,9 @@ public class TicTacToeDriver extends JFrameDriver
         buttonEnd().click();
     }
 
-    private JButtonDriver buttonEnd()
+    public void exitGame()
     {
-        return new JButtonDriver(this, JButton.class, named(MainWindow.MAIN_WINDOW_END_BUTTON));
+        this.dispose();
     }
 
     public void doTickCell(String coordinate)
@@ -77,19 +76,16 @@ public class TicTacToeDriver extends JFrameDriver
 
     }
 
-    private JButtonDriver buttonCell(String coordinate)
+    //=============================================================
+    public void showStatus(String status)
     {
-        return new JButtonDriver(this, JButton.class, named("btnCell" + coordinate));
+        JLabelDriver lbStatusDriver = labelStatus();
+        lbStatusDriver.hasText(equalTo(status));
     }
 
     public void showsCellChar(String coordinate, String status)
     {
         JButtonDriver jButtonDriver = buttonCell(coordinate);
         jButtonDriver.hasText(equalTo(status));
-    }
-
-    public void exitGame()
-    {
-        this.dispose();
     }
 }

@@ -1,9 +1,5 @@
 package endtoendtest;
 
-import com.intellij.uiDesigner.core.GridConstraints;
-import com.intellij.uiDesigner.core.GridLayoutManager;
-import com.intellij.uiDesigner.core.Spacer;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -23,28 +19,18 @@ public class MainWindow extends JFrame
     public static final String MAIN_WINDOW_STATUS_LABEL = "lbStatus";
     public static final String MAIN_WINDOW_END_BUTTON = "btnEndGame";
 
-    public static boolean stateCase = true;
     private JButton btnEndGame;
     private JButton btnStartGame;
     private JLabel lbStatus;
     private JPanel panel1;
     private JPanel panelBoard;
-    public static Controller controller = new Controller();
+    private Controller controller;
     private Cell[][] cells = new Cell[3][3];
 
-    public static boolean isStateCase()
-    {
-        return stateCase;
-    }
-
-    public static void setStateCase(boolean state)
-    {
-        MainWindow.stateCase = state;
-    }
-
-    public MainWindow()
+    public MainWindow(final Controller controller)
     {
         super(MAIN_WINDOW_NAME);
+        this.controller = controller;
         $$$setupUI$$$();
         setTitle(MAIN_WINDOW_NAME);
         setName(MAIN_WINDOW_NAME);
@@ -58,8 +44,7 @@ public class MainWindow extends JFrame
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                lbStatus.setText("START");
-                doBuildBoard();
+                controller.doStartGame();
             }
         });
         btnEndGame.addActionListener(new ActionListener()
@@ -67,28 +52,27 @@ public class MainWindow extends JFrame
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                lbStatus.setText("END");
+                controller.doEndGame();
             }
         });
 
     }
 
-    public void doBuildBoard()
+    public JLabel getLbStatus()
     {
-        for (int i = 0; i < 3; i++)
-        {
-            for (int j = 0; j < 3; j++)
-            {
-                cells[i][j] = new Cell(controller);
-                cells[i][j].setName("btnCell" + i + "_" + j);
-                System.out.println(cells[i][j].getName());
-                panelBoard.add(cells[i][j]);
-            }
-        }
+        return lbStatus;
     }
 
+    public JPanel getPanelBoard()
+    {
+        return panelBoard;
+    }
 
-    //
+    public Cell[][] getCells()
+    {
+        return cells;
+    }
+
     private void createUIComponents()
     {
         panelBoard = new JPanel(new GridLayout(3, 3));

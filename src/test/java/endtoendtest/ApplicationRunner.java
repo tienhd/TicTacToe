@@ -1,5 +1,7 @@
 package endtoendtest;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+
 /**
  * User: tienhd
  * Date: 8/8/13
@@ -52,5 +54,10 @@ public class ApplicationRunner
     public void exitGame()
     {
         ticTacToeDriver.exitGame();
+    }
+
+    public void checksStatusEqual(String text)
+    {
+        ticTacToeDriver.labelStatus().hasText(equalTo(text));
     }
 }
