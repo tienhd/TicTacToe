@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="endtoendtest.MainWindow">
   <grid id="27dc6" binding="panel1" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="20" y="20" width="475" height="426"/>
+      <xy x="20" y="20" width="475" height="443"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -77,6 +77,7 @@
                     </constraints>
                     <properties>
                       <name value="symbolX"/>
+                      <selected value="true"/>
                       <text value="X"/>
                     </properties>
                   </component>

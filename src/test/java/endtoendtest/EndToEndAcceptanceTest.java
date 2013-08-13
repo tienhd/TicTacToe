@@ -1,6 +1,7 @@
 package endtoendtest;
 
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -11,6 +12,12 @@ import org.junit.Test;
 public class EndToEndAcceptanceTest
 {
     private final ApplicationRunner application = new ApplicationRunner();
+
+    @Before
+    public void startFrameBeforeTest()
+    {
+        application.startFrame();
+    }
 
     @After
     public void exitGameWhenTestDone()
@@ -69,15 +76,15 @@ public class EndToEndAcceptanceTest
     {
         application.startGame();
         application.doTickCell("0_0");
-        application.showsCellChar("0_0","X");
+        application.showsCellChar("0_0", "X");
         application.doTickCell("1_0");
-        application.showsCellChar("1_0","O");
+        application.showsCellChar("1_0", "O");
         application.doTickCell("0_1");
-        application.showsCellChar("0_1","X");
+        application.showsCellChar("0_1", "X");
         application.doTickCell("1_1");
-        application.showsCellChar("1_1","O");
+        application.showsCellChar("1_1", "O");
         application.doTickCell("0_2");
-        application.showsCellChar("0_2","X");
+        application.showsCellChar("0_2", "X");
         application.showsXWin();
     }
 
@@ -86,22 +93,46 @@ public class EndToEndAcceptanceTest
     {
         application.startGame();
         application.doTickCell("0_0");
-        application.showsCellChar("0_0","X");
+        application.showsCellChar("0_0", "X");
         application.doTickCell("1_0");
-        application.showsCellChar("1_0","O");
+        application.showsCellChar("1_0", "O");
         application.doTickCell("1_1");
-        application.showsCellChar("1_1","X");
+        application.showsCellChar("1_1", "X");
         application.doTickCell("2_1");
-        application.showsCellChar("2_1","O");
+        application.showsCellChar("2_1", "O");
         application.doTickCell("2_2");
-        application.showsCellChar("2_2","X");
+        application.showsCellChar("2_2", "X");
         application.showsXWin();
     }
+
     @Test
-    public void testChooseSymbolStartGameThenEndGame(){
+    public void testChooseSymbolXStartGameThenEndGame()
+    {
         application.chooseXSymbol();
         application.showsStartSymbolX();
         application.startGame();
+        application.endGame();
+    }
+
+    @Test
+    public void testChooseSymbolOStartGameThenEndGame()
+    {
+        application.chooseOSymbol();
+        application.showsStartSymbolO();
+        application.startGame();
+        application.endGame();
+    }
+
+    @Test
+    public void testChooseSymbolOStartGameThenPlayAndEndgame()
+    {
+        application.chooseOSymbol();
+        application.showsStartSymbolO();
+        application.startGame();
+        application.doTickCell("2_2");
+        application.showsCellChar("2_2", "O");
+        application.doTickCell("1_1");
+        application.showsCellChar("1_1", "X");
         application.endGame();
     }
 }

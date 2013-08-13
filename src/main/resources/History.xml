@@ -1,0 +1,12 @@
+<histories>
+    <history id="1">
+        <start>X</start>
+        <winner>X</winner>
+        <steps>
+            <step>
+                <x>0</x>
+                <y>0</y>
+            </step>
+        </steps>
+    </history>
+</histories>

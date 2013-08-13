@@ -18,9 +18,13 @@ public class ApplicationRunner
         ticTacToeDriver.hasTitle(MainWindow.MAIN_WINDOW_NAME);
     }
 
-    public void startGame()
+    public void startFrame()
     {
         initTicTacToe();
+    }
+
+    public void startGame()
+    {
         ticTacToeDriver.startGame();
     }
 
@@ -71,6 +75,16 @@ public class ApplicationRunner
 
     public void showsStartSymbolX()
     {
-        ticTacToeDriver.labelStatus().hasText(equalTo("X"));
+        ticTacToeDriver.labelStatus().hasText(equalTo("Start symbol X"));
+    }
+
+    public void chooseOSymbol()
+    {
+        ticTacToeDriver.chooseSymbol(MainWindow.MAIN_SYMBOL_O);
+    }
+
+    public void showsStartSymbolO()
+    {
+        ticTacToeDriver.labelStatus().hasText(equalTo("Start symbol O"));
     }
 }

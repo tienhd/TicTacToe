@@ -88,6 +88,11 @@ public class Controller implements ActionListener
 
     public void setStartSymbol(String symbol)
     {
+        mainWindow.getLbStatus().setText("Start symbol " + symbol);
+        if (symbol.equals("O"))
+        {
+            flag = false;
+        }
         System.out.println(symbol);
     }
 }

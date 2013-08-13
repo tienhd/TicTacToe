@@ -1,5 +1,11 @@
 package endtoendtest;
 
+import com.intellij.uiDesigner.core.GridConstraints;
+import com.intellij.uiDesigner.core.GridLayoutManager;
+import com.intellij.uiDesigner.core.Spacer;
+import com.jgoodies.forms.layout.CellConstraints;
+import com.jgoodies.forms.layout.FormLayout;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -115,25 +121,48 @@ public class MainWindow extends JFrame
         panel2.setLayout(new BorderLayout(0, 0));
         panel1.add(panel2, BorderLayout.EAST);
         final JPanel panel3 = new JPanel();
-        panel3.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(4, 1, new Insets(0, 0, 0, 0), -1, -1));
+        panel3.setLayout(new GridLayoutManager(5, 1, new Insets(0, 0, 0, 0), -1, -1));
         panel2.add(panel3, BorderLayout.CENTER);
         btnEndGame = new JButton();
         btnEndGame.setName("btnEndGame");
         btnEndGame.setText("End");
-        panel3.add(btnEndGame, new com.intellij.uiDesigner.core.GridConstraints(2, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(66, 21), null, 0, false));
+        panel3.add(btnEndGame, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(66, 21), null, 0, false));
         btnStartGame = new JButton();
         btnStartGame.setName("btnStartGame");
         btnStartGame.setText("Start");
-        panel3.add(btnStartGame, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(66, 25), null, 0, false));
-        final com.intellij.uiDesigner.core.Spacer spacer1 = new com.intellij.uiDesigner.core.Spacer();
-        panel3.add(spacer1, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, 1, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        panel1.add(panelBoard, BorderLayout.CENTER);
+        panel3.add(btnStartGame, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(66, 25), null, 0, false));
         final JPanel panel4 = new JPanel();
-        panel4.setLayout(new BorderLayout(0, 0));
-        panel1.add(panel4, BorderLayout.NORTH);
+        panel4.setLayout(new FormLayout("fill:max(d;4px):noGrow,left:4dlu:noGrow,fill:d:grow,left:4dlu:noGrow,fill:max(d;4px):noGrow", "center:max(d;4px):noGrow,top:4dlu:noGrow,center:236px:grow,top:4dlu:noGrow,center:d:grow,top:4dlu:noGrow,center:max(d;4px):noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow"));
+        panel3.add(panel4, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        final JLabel label1 = new JLabel();
+        label1.setText("Start Symbol");
+        CellConstraints cc = new CellConstraints();
+        panel4.add(label1, cc.xy(3, 5, CellConstraints.CENTER, CellConstraints.DEFAULT));
+        xRadioButton = new JRadioButton();
+        xRadioButton.setName("symbolX");
+        xRadioButton.setSelected(true);
+        xRadioButton.setText("X");
+        panel4.add(xRadioButton, cc.xy(3, 7, CellConstraints.CENTER, CellConstraints.DEFAULT));
+        oRadioButton = new JRadioButton();
+        oRadioButton.setName("symbolO");
+        oRadioButton.setText("O");
+        panel4.add(oRadioButton, cc.xy(3, 9, CellConstraints.CENTER, CellConstraints.DEFAULT));
+        final Spacer spacer1 = new Spacer();
+        panel4.add(spacer1, cc.xy(3, 3, CellConstraints.DEFAULT, CellConstraints.FILL));
+        final Spacer spacer2 = new Spacer();
+        panel3.add(spacer2, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        panel1.add(panelBoard, BorderLayout.CENTER);
+        final JPanel panel5 = new JPanel();
+        panel5.setLayout(new BorderLayout(0, 0));
+        panel1.add(panel5, BorderLayout.NORTH);
         lbStatus = new JLabel();
         lbStatus.setName("lbStatus");
-        panel4.add(lbStatus, BorderLayout.CENTER);
+        lbStatus.setText("");
+        panel5.add(lbStatus, BorderLayout.CENTER);
+        ButtonGroup buttonGroup;
+        buttonGroup = new ButtonGroup();
+        buttonGroup.add(xRadioButton);
+        buttonGroup.add(oRadioButton);
     }
 
     /**
