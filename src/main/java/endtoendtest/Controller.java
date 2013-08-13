@@ -4,11 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created with IntelliJ IDEA.
  * User: thinhdd
  * Date: 8/9/13
  * Time: 10:36 AM
- * To change this template use File | Settings | File Templates.
  */
 public class Controller implements ActionListener
 {
@@ -86,5 +84,10 @@ public class Controller implements ActionListener
         {
             showMessage("GAME FINISH!");
         }
+    }
+
+    public void setStartSymbol(String symbol)
+    {
+        System.out.println(symbol);
     }
 }

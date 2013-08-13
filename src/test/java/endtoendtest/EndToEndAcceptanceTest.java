@@ -97,4 +97,11 @@ public class EndToEndAcceptanceTest
         application.showsCellChar("2_2","X");
         application.showsXWin();
     }
+    @Test
+    public void testChooseSymbolStartGameThenEndGame(){
+        application.chooseXSymbol();
+        application.showsStartSymbolX();
+        application.startGame();
+        application.endGame();
+    }
 }

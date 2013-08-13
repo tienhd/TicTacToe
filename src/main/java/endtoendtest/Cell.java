@@ -12,12 +12,14 @@ import java.awt.*;
  */
 public class Cell extends JButton
 {
-    private Controller controller;
+
+    public Cell()
+    {
+    }
 
     public Cell(Controller controller)
     {
         super();
-        this.controller = controller;
         this.setFont(new Font("", Font.BOLD, 30));
         addActionListener(controller);
     }

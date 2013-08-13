@@ -63,4 +63,14 @@ public class ApplicationRunner
     {
         ticTacToeDriver.labelStatus().hasText(equalTo("X Win!"));
     }
+
+    public void chooseXSymbol()
+    {
+        ticTacToeDriver.chooseSymbol(MainWindow.MAIN_SYMBOL_X);
+    }
+
+    public void showsStartSymbolX()
+    {
+        ticTacToeDriver.labelStatus().hasText(equalTo("X"));
+    }
 }

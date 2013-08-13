@@ -18,12 +18,16 @@ public class MainWindow extends JFrame
     public static final String MAIN_WINDOW_START_BUTTON = "btnStartGame";
     public static final String MAIN_WINDOW_STATUS_LABEL = "lbStatus";
     public static final String MAIN_WINDOW_END_BUTTON = "btnEndGame";
+    public static final String MAIN_SYMBOL_X = "symbolX";
+    public static final String MAIN_SYMBOL_O = "symbolO";
 
     private JButton btnEndGame;
     private JButton btnStartGame;
     private JLabel lbStatus;
     private JPanel panel1;
     private JPanel panelBoard;
+    private JRadioButton xRadioButton;
+    private JRadioButton oRadioButton;
     private Controller controller;
     private Cell[][] cells = new Cell[3][3];
 
@@ -57,6 +61,22 @@ public class MainWindow extends JFrame
             }
         });
 
+        xRadioButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                controller.setStartSymbol("X");
+            }
+        });
+        oRadioButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                controller.setStartSymbol("O");
+            }
+        });
     }
 
     public JLabel getLbStatus()

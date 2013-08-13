@@ -1,10 +1,7 @@
 package endtoendtest;
 
 import com.objogate.wl.swing.AWTEventQueueProber;
-import com.objogate.wl.swing.driver.JButtonDriver;
-import com.objogate.wl.swing.driver.JFrameDriver;
-import com.objogate.wl.swing.driver.JLabelDriver;
-import com.objogate.wl.swing.driver.JOptionPaneDriver;
+import com.objogate.wl.swing.driver.*;
 import com.objogate.wl.swing.gesture.GesturePerformer;
 
 import javax.swing.*;
@@ -87,5 +84,11 @@ public class TicTacToeDriver extends JFrameDriver
     {
         JButtonDriver jButtonDriver = buttonCell(coordinate);
         jButtonDriver.hasText(equalTo(status));
+    }
+
+    public void chooseSymbol(String symbol)
+    {
+        JRadioButtonDriver jRadioButtonDriver = new JRadioButtonDriver(this, JRadioButton.class, named(symbol));
+        jRadioButtonDriver.click();
     }
 }
