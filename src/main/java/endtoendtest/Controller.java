@@ -63,7 +63,7 @@ public class Controller implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        Cell cell = (Cell)e.getSource();
+        Cell cell = (Cell) e.getSource();
         if (flag == true)
         {
             cell.setText("X");
@@ -77,6 +77,11 @@ public class Controller implements ActionListener
         numCellChecked++;
         cell.setEnabled(false);
         mainWindow.getLbStatus().setText("Symbol  " + cell.getText() + "  checked!");
+        String winner = LogicGame.getWinner(cells);
+        if (winner != null && !winner.isEmpty())
+        {
+            mainWindow.getLbStatus().setText(winner + " Win!");
+        }
         if (numCellChecked == 9)
         {
             showMessage("GAME FINISH!");

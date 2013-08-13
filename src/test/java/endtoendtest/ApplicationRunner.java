@@ -58,4 +58,9 @@ public class ApplicationRunner
     {
         ticTacToeDriver.labelStatus().hasText(equalTo(text));
     }
+
+    public void showsXWin()
+    {
+        ticTacToeDriver.labelStatus().hasText(equalTo("X Win!"));
+    }
 }

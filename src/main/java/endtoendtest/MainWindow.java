@@ -113,7 +113,6 @@ public class MainWindow extends JFrame
         panel1.add(panel4, BorderLayout.NORTH);
         lbStatus = new JLabel();
         lbStatus.setName("lbStatus");
-        lbStatus.setText("Label");
         panel4.add(lbStatus, BorderLayout.CENTER);
     }
 

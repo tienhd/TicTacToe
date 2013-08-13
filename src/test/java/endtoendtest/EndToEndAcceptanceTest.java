@@ -63,4 +63,38 @@ public class EndToEndAcceptanceTest
         application.showsCellChar("0_1", "X");
         application.checksStatusEqual("GAME FINISH!");
     }
+
+    @Test
+    public void testPlayUtilXWinThenFinishGame()
+    {
+        application.startGame();
+        application.doTickCell("0_0");
+        application.showsCellChar("0_0","X");
+        application.doTickCell("1_0");
+        application.showsCellChar("1_0","O");
+        application.doTickCell("0_1");
+        application.showsCellChar("0_1","X");
+        application.doTickCell("1_1");
+        application.showsCellChar("1_1","O");
+        application.doTickCell("0_2");
+        application.showsCellChar("0_2","X");
+        application.showsXWin();
+    }
+
+    @Test
+    public void testPlayUtilXWinAtDiagonalThenFinishGame()
+    {
+        application.startGame();
+        application.doTickCell("0_0");
+        application.showsCellChar("0_0","X");
+        application.doTickCell("1_0");
+        application.showsCellChar("1_0","O");
+        application.doTickCell("1_1");
+        application.showsCellChar("1_1","X");
+        application.doTickCell("2_1");
+        application.showsCellChar("2_1","O");
+        application.doTickCell("2_2");
+        application.showsCellChar("2_2","X");
+        application.showsXWin();
+    }
 }
