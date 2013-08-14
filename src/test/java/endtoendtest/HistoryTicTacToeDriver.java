@@ -2,6 +2,7 @@ package endtoendtest;
 
 import com.objogate.wl.swing.AWTEventQueueProber;
 import com.objogate.wl.swing.driver.JFrameDriver;
+import com.objogate.wl.swing.driver.JTableDriver;
 import com.objogate.wl.swing.driver.JTableHeaderDriver;
 import com.objogate.wl.swing.gesture.GesturePerformer;
 import com.qsoft.kata5.HistoryWindow;
@@ -40,10 +41,11 @@ public class HistoryTicTacToeDriver extends JFrameDriver
         }
     }
 
-    public void showsHistoryData()
+    public void showsHistoryData(String firstPlayer, String winner, String steps)
     {
         //assertion
-
+        JTableDriver tableDriver = new JTableDriver(this);
+        tableDriver.hasRow(matching(withLabelText(firstPlayer), withLabelText(winner), withLabelText(steps)));
     }
 
     public void hasColumnTitles()

@@ -1,0 +1,17 @@
+-- Table: history
+
+DROP TABLE history;
+
+CREATE TABLE history
+(
+  id bigint primary key NOT NULL default nextval('tictactoe_seq'),
+  first_player "char",
+  winner "char",
+  steps text,
+  time_stamp bigint
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE history
+  OWNER TO admin;

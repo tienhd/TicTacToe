@@ -116,15 +116,15 @@ public class ApplicationRunner
         historyTicTacToeDriver.pauseOnScreen();
     }
 
-    public void showsHistoryData()
-    {
-        initHistoryTicTacToe();
-        historyTicTacToeDriver.showsHistoryData();
-    }
+//    public void showsHistoryData()
+//    {
+//        initHistoryTicTacToe();
+//        historyTicTacToeDriver.showsHistoryData();
+//    }
 
-    public void showsTableHasLastMatch()
+    public void showsTableHasLastMatch(String firstPlayer, String winner, String steps)
     {
         initHistoryTicTacToe();
-        historyTicTacToeDriver.showsHistoryData();
+        historyTicTacToeDriver.showsHistoryData(firstPlayer, winner, steps);
     }
 }

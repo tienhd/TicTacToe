@@ -17,10 +17,10 @@ public class Cell extends JButton
     {
     }
 
-    public Cell(Controller controller)
+    public Cell(MainController mainController)
     {
         super();
         this.setFont(new Font("", Font.BOLD, 30));
-        addActionListener(controller);
+        addActionListener(mainController);
     }
 }

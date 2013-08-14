@@ -8,14 +8,16 @@ import java.awt.event.ActionListener;
  * Date: 8/9/13
  * Time: 10:36 AM
  */
-public class Controller implements ActionListener
+public class MainController implements ActionListener
 {
-    boolean flag = true;
+    public final boolean X_PLAYER = true;
+    public final boolean O_PLAYER = false;
+    boolean isFirstPlayer = true;
     int numCellChecked = 0;
     MainWindow mainWindow;
     private Cell[][] cells;
 
-    public Controller()
+    public MainController()
     {
         try
         {
@@ -61,15 +63,15 @@ public class Controller implements ActionListener
     public void actionPerformed(ActionEvent e)
     {
         Cell cell = (Cell) e.getSource();
-        if (flag == true)
+        if (isFirstPlayer == X_PLAYER)
         {
             cell.setText("X");
-            flag = false;
+            isFirstPlayer = false;
         }
         else
         {
             cell.setText("O");
-            flag = true;
+            isFirstPlayer = true;
         }
         numCellChecked++;
         cell.setEnabled(false);
@@ -90,7 +92,7 @@ public class Controller implements ActionListener
         mainWindow.getLbStatus().setText("Start symbol " + symbol);
         if (symbol.equals("O"))
         {
-            flag = false;
+            isFirstPlayer = false;
         }
         System.out.println(symbol);
     }

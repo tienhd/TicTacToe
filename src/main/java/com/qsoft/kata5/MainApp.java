@@ -14,7 +14,7 @@ public class MainApp
 
     public static void main()
     {
-        new Controller();
+        new MainController();
     }
 
     public static void history()

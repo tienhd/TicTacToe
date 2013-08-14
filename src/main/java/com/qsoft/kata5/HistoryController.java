@@ -1,6 +1,6 @@
 package com.qsoft.kata5;
 
-import com.qsoft.kata5.entity.TicTacToeMatch;
+import com.qsoft.kata5.persistence.entity.TicTacToeMatch;
 
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;

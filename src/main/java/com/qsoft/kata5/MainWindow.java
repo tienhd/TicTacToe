@@ -36,14 +36,14 @@ public class MainWindow extends JFrame
     private JRadioButton xRadioButton;
     private JRadioButton oRadioButton;
     private JButton showHistoryButton;
-    private Controller controller;
+    private MainController mainController;
     private HistoryController historyController;
     private Cell[][] cells = new Cell[3][3];
 
-    public MainWindow(final Controller controller)
+    public MainWindow(final MainController mainController)
     {
         super(MAIN_WINDOW_NAME);
-        this.controller = controller;
+        this.mainController = mainController;
         $$$setupUI$$$();
         setTitle(MAIN_WINDOW_NAME);
         setName(MAIN_WINDOW_NAME);
@@ -58,7 +58,7 @@ public class MainWindow extends JFrame
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                controller.doStartGame();
+                mainController.doStartGame();
             }
         });
         btnEndGame.addActionListener(new ActionListener()
@@ -66,7 +66,7 @@ public class MainWindow extends JFrame
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                controller.doEndGame();
+                mainController.doEndGame();
             }
         });
 
@@ -75,7 +75,7 @@ public class MainWindow extends JFrame
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                controller.setStartSymbol("X");
+                mainController.setStartSymbol("X");
             }
         });
         oRadioButton.addActionListener(new ActionListener()
@@ -83,7 +83,7 @@ public class MainWindow extends JFrame
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                controller.setStartSymbol("O");
+                mainController.setStartSymbol("O");
             }
         });
         showHistoryButton.addActionListener(new ActionListener()

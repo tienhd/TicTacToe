@@ -149,6 +149,7 @@ public class EndToEndAcceptanceTest
     {
         application.chooseXSymbol();
         application.startGame();
+        application.doTickCell("0_0");
         application.showsCellChar("0_0", "X");
         application.doTickCell("1_0");
         application.showsCellChar("1_0", "O");
@@ -161,6 +162,6 @@ public class EndToEndAcceptanceTest
         application.endGame();
 
         application.doShowHistory();
-        application.showsTableHasLastMatch();
+        application.showsTableHasLastMatch("X", "X", "[0_0,1_0,1_1,2_1,2_2]");
     }
 }
