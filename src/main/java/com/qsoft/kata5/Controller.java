@@ -1,4 +1,4 @@
-package endtoendtest;
+package com.qsoft.kata5;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,7 +20,6 @@ public class Controller implements ActionListener
         try
         {
             mainWindow = new MainWindow(this);
-            mainWindow.setVisible(true);
         }
         catch (Exception ex)
         {

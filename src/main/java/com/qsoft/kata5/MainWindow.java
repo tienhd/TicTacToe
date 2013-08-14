@@ -1,4 +1,4 @@
-package endtoendtest;
+package com.qsoft.kata5;
 
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
@@ -26,6 +26,7 @@ public class MainWindow extends JFrame
     public static final String MAIN_WINDOW_END_BUTTON = "btnEndGame";
     public static final String MAIN_SYMBOL_X = "symbolX";
     public static final String MAIN_SYMBOL_O = "symbolO";
+    public static final String MAIN_WINDOW_SHOW_HISTORY_BUTTON = "btnShowHistory";
 
     private JButton btnEndGame;
     private JButton btnStartGame;
@@ -34,7 +35,9 @@ public class MainWindow extends JFrame
     private JPanel panelBoard;
     private JRadioButton xRadioButton;
     private JRadioButton oRadioButton;
+    private JButton showHistoryButton;
     private Controller controller;
+    private HistoryController historyController;
     private Cell[][] cells = new Cell[3][3];
 
     public MainWindow(final Controller controller)
@@ -83,6 +86,14 @@ public class MainWindow extends JFrame
                 controller.setStartSymbol("O");
             }
         });
+        showHistoryButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                historyController = new HistoryController();
+            }
+        });
     }
 
     public JLabel getLbStatus()
@@ -121,16 +132,16 @@ public class MainWindow extends JFrame
         panel2.setLayout(new BorderLayout(0, 0));
         panel1.add(panel2, BorderLayout.EAST);
         final JPanel panel3 = new JPanel();
-        panel3.setLayout(new GridLayoutManager(5, 1, new Insets(0, 0, 0, 0), -1, -1));
+        panel3.setLayout(new GridLayoutManager(6, 1, new Insets(0, 0, 0, 0), -1, -1));
         panel2.add(panel3, BorderLayout.CENTER);
         btnEndGame = new JButton();
         btnEndGame.setName("btnEndGame");
         btnEndGame.setText("End");
-        panel3.add(btnEndGame, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(66, 21), null, 0, false));
+        panel3.add(btnEndGame, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(66, 21), null, 0, false));
         btnStartGame = new JButton();
         btnStartGame.setName("btnStartGame");
         btnStartGame.setText("Start");
-        panel3.add(btnStartGame, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(66, 25), null, 0, false));
+        panel3.add(btnStartGame, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(66, 25), null, 0, false));
         final JPanel panel4 = new JPanel();
         panel4.setLayout(new FormLayout("fill:max(d;4px):noGrow,left:4dlu:noGrow,fill:d:grow,left:4dlu:noGrow,fill:max(d;4px):noGrow", "center:max(d;4px):noGrow,top:4dlu:noGrow,center:236px:grow,top:4dlu:noGrow,center:d:grow,top:4dlu:noGrow,center:max(d;4px):noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow"));
         panel3.add(panel4, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
@@ -150,7 +161,11 @@ public class MainWindow extends JFrame
         final Spacer spacer1 = new Spacer();
         panel4.add(spacer1, cc.xy(3, 3, CellConstraints.DEFAULT, CellConstraints.FILL));
         final Spacer spacer2 = new Spacer();
-        panel3.add(spacer2, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        panel3.add(spacer2, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        showHistoryButton = new JButton();
+        showHistoryButton.setName("btnShowHistory");
+        showHistoryButton.setText("Show History");
+        panel3.add(showHistoryButton, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         panel1.add(panelBoard, BorderLayout.CENTER);
         final JPanel panel5 = new JPanel();
         panel5.setLayout(new BorderLayout(0, 0));

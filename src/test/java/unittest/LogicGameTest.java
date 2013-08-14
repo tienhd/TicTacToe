@@ -1,7 +1,7 @@
 package unittest;
 
-import endtoendtest.Cell;
-import endtoendtest.LogicGame;
+import com.qsoft.kata5.Cell;
+import com.qsoft.kata5.LogicGame;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -61,6 +61,6 @@ public class LogicGameTest
         cells[1][1].setText("O");
         cells[2][1].setText("X");
         cells[2][2].setText("O");
-        assertEquals("O",LogicGame.getWinner(cells));
+        assertEquals("O", LogicGame.getWinner(cells));
     }
 }

@@ -1,4 +1,4 @@
-package endtoendtest;
+package com.qsoft.kata5;
 
 import javax.swing.*;
 import java.awt.*;

@@ -135,4 +135,32 @@ public class EndToEndAcceptanceTest
         application.showsCellChar("1_1", "X");
         application.endGame();
     }
+
+    @Test
+    public void testShowHistoryFrameWhenButtonShowHistoryClicked()
+    {
+        application.doShowHistory();
+        application.showsHistoryFrame();
+        application.pause();
+    }
+
+    @Test
+    public void testFinishGameWithOneStepThenShowHistoryInTable()
+    {
+        application.chooseXSymbol();
+        application.startGame();
+        application.showsCellChar("0_0", "X");
+        application.doTickCell("1_0");
+        application.showsCellChar("1_0", "O");
+        application.doTickCell("1_1");
+        application.showsCellChar("1_1", "X");
+        application.doTickCell("2_1");
+        application.showsCellChar("2_1", "O");
+        application.doTickCell("2_2");
+        application.showsCellChar("2_2", "X");
+        application.endGame();
+
+        application.doShowHistory();
+        application.showsTableHasLastMatch();
+    }
 }

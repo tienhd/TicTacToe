@@ -1,4 +1,4 @@
-package endtoendtest;
+package com.qsoft.kata5;
 
 /**
  * User: BinkaA
@@ -28,11 +28,15 @@ public class LogicGame
         //
         if (cells[0][0].getText().equals(cells[1][1].getText()) &&
                 cells[0][0].getText().equals(cells[2][2].getText()))
+        {
             return cells[0][0].getText();
+        }
         //
         if (cells[2][0].getText().equals(cells[1][1].getText()) &&
                 cells[2][0].getText().equals(cells[0][2].getText()))
+        {
             return cells[2][0].getText();
+        }
         return null;
     }
 }

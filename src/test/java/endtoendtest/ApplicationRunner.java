@@ -1,5 +1,9 @@
 package endtoendtest;
 
+import com.qsoft.kata5.HistoryWindow;
+import com.qsoft.kata5.MainApp;
+import com.qsoft.kata5.MainWindow;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 
 /**
@@ -10,12 +14,20 @@ import static org.hamcrest.CoreMatchers.equalTo;
 public class ApplicationRunner
 {
     private TicTacToeDriver ticTacToeDriver;
+    private HistoryTicTacToeDriver historyTicTacToeDriver;
 
     private void initTicTacToe()
     {
         MainApp.main();
         ticTacToeDriver = new TicTacToeDriver(3000);
         ticTacToeDriver.hasTitle(MainWindow.MAIN_WINDOW_NAME);
+    }
+
+    private void initHistoryTicTacToe()
+    {
+        historyTicTacToeDriver = new HistoryTicTacToeDriver(3000);
+        historyTicTacToeDriver.hasTitle(HistoryWindow.HISTORY_WINDOW_NAME);
+        historyTicTacToeDriver.hasColumnTitles();
     }
 
     public void startFrame()
@@ -86,5 +98,33 @@ public class ApplicationRunner
     public void showsStartSymbolO()
     {
         ticTacToeDriver.labelStatus().hasText(equalTo("Start symbol O"));
+    }
+
+    public void doShowHistory()
+    {
+        ticTacToeDriver.doShowHistory();
+    }
+
+    public void showsHistoryFrame()
+    {
+        initHistoryTicTacToe();
+    }
+
+    public void pause()
+    {
+        ticTacToeDriver.pauseOnScreen();
+        historyTicTacToeDriver.pauseOnScreen();
+    }
+
+    public void showsHistoryData()
+    {
+        initHistoryTicTacToe();
+        historyTicTacToeDriver.showsHistoryData();
+    }
+
+    public void showsTableHasLastMatch()
+    {
+        initHistoryTicTacToe();
+        historyTicTacToeDriver.showsHistoryData();
     }
 }

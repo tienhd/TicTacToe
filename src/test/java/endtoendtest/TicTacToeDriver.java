@@ -3,6 +3,7 @@ package endtoendtest;
 import com.objogate.wl.swing.AWTEventQueueProber;
 import com.objogate.wl.swing.driver.*;
 import com.objogate.wl.swing.gesture.GesturePerformer;
+import com.qsoft.kata5.MainWindow;
 
 import javax.swing.*;
 
@@ -22,6 +23,19 @@ public class TicTacToeDriver extends JFrameDriver
                         named(MainWindow.MAIN_WINDOW_NAME),
                         showingOnScreen()),
                 new AWTEventQueueProber(timeoutMillis, 100));
+    }
+
+    public void pauseOnScreen()
+    {
+        Thread currentThread = Thread.currentThread();
+        try
+        {
+            currentThread.sleep(750);
+        }
+        catch (InterruptedException e)
+        {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
     }
 
     // =============== DRIVER ===================================================================
@@ -49,6 +63,11 @@ public class TicTacToeDriver extends JFrameDriver
     public JOptionPaneDriver jOptionPaneFinishGame()
     {
         return new JOptionPaneDriver(this, JOptionPane.class);
+    }
+
+    public JButtonDriver buttonShowHistory()
+    {
+        return new JButtonDriver(this, JButton.class, named(MainWindow.MAIN_WINDOW_SHOW_HISTORY_BUTTON));
     }
 
     // ========================================================
@@ -90,5 +109,11 @@ public class TicTacToeDriver extends JFrameDriver
     {
         JRadioButtonDriver jRadioButtonDriver = new JRadioButtonDriver(this, JRadioButton.class, named(symbol));
         jRadioButtonDriver.click();
+    }
+
+    public void doShowHistory()
+    {
+        JButtonDriver jButtonDriver = buttonShowHistory();
+        jButtonDriver.click();
     }
 }
