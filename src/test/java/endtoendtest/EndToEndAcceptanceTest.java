@@ -145,13 +145,12 @@ public class EndToEndAcceptanceTest
     {
         application.doShowHistory();
         application.showsHistoryFrame();
-        //application.pause();
+        application.pause();
     }
 
     @Test
     public void testFinishGameWhenXWinThenShowHistoryInTable()
     {
-        application.setTimeSystemToTestMode();
         application.chooseXSymbol();
         application.startGame();
         application.doTickCell("0_0");
@@ -164,9 +163,11 @@ public class EndToEndAcceptanceTest
         //application.showsCellChar("2_1", "O");
         application.doTickCell("2_2");
         //application.showsCellChar("2_2", "X");
-        application.endGame();
 
+        //X Win then Save to DB
+        application.checksStatusEqual("SAVED");
+        application.endGame();
         application.doShowHistory();
-        application.showsTableHasLastMatch(1L, 1111111L, "X", "X", "0_0,1_0,1_1,2_1,2_2");
+        application.showsHistoryFrame();
     }
 }

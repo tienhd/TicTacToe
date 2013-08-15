@@ -28,7 +28,7 @@ public class MainController implements ActionListener
 
     public String steps = "";
     public String logFirstPlayer = "";
-    public String logWinner = "";
+    public String logWinner = "-";
     public Long lastMatchId = 0L;
 
     @Autowired
@@ -56,7 +56,7 @@ public class MainController implements ActionListener
     public void doEndGame()
     {
         mainWindow.getLbStatus().setText("END");
-        saveMatchLogToDB();
+        //saveMatchLogToDB();
     }
 
     public void doBuildBoard()
@@ -102,10 +102,12 @@ public class MainController implements ActionListener
         {
             mainWindow.getLbStatus().setText(winner + " Win!");
             logWinner = winner;
+            saveMatchLogToDB();
         }
         if (numCellChecked == 9)
         {
             showMessage("GAME FINISH!");
+            saveMatchLogToDB();
         }
     }
 
@@ -138,6 +140,7 @@ public class MainController implements ActionListener
     public Long saveMatchLogToDB()
     {
         TicTacToeMatch ticTacToeMatch = new TicTacToeMatch(timeSystem.getTimeInMillis(), logFirstPlayer, logWinner, steps);
+        showMessage("SAVED");
         return historyController.saveLog(ticTacToeMatch);
     }
 
