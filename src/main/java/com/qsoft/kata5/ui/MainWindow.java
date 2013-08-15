@@ -7,6 +7,7 @@ import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 import com.qsoft.kata5.ui.controller.HistoryController;
 import com.qsoft.kata5.ui.controller.MainController;
+import com.qsoft.kata5.ui.controller.TictactoeStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 
@@ -70,7 +71,8 @@ public class MainWindow extends JFrame
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                mainController.doStartGame();
+                if (refreshPanelBoard())
+                    mainController.doStartGame();
             }
         });
         btnEndGame.addActionListener(new ActionListener()
@@ -106,6 +108,15 @@ public class MainWindow extends JFrame
                 historyController.showHistoryFrame();
             }
         });
+    }
+
+    private boolean refreshPanelBoard()
+    {
+        if (mainController.getActiveStatus() == TictactoeStatus.START){
+            return false;
+        }
+        panelBoard.removeAll();
+        return true;
     }
 
     public JLabel getLbStatus()

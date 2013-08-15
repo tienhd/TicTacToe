@@ -25,9 +25,10 @@ public class MainController implements ActionListener
     int numCellChecked = 0;
 
     Calendar timeSystem;
+    private TictactoeStatus activeStatus;
 
     public String steps = "";
-    public String logFirstPlayer = "";
+    public String logFirstPlayer = "X";
     public String logWinner = "-";
     public Long lastMatchId = 0L;
 
@@ -49,18 +50,21 @@ public class MainController implements ActionListener
 
     public void doStartGame()
     {
-        mainWindow.getLbStatus().setText("START");
+        activeStatus = TictactoeStatus.START;
+        mainWindow.getLbStatus().setText(activeStatus.getStatus());
         doBuildBoard();
     }
 
     public void doEndGame()
     {
-        mainWindow.getLbStatus().setText("END");
+        activeStatus = TictactoeStatus.END;
+        mainWindow.getLbStatus().setText(activeStatus.getStatus());
         //saveMatchLogToDB();
     }
 
     public void doBuildBoard()
     {
+
         cells = mainWindow.getCells();
         for (int i = 0; i < 3; i++)
         {
@@ -88,15 +92,17 @@ public class MainController implements ActionListener
         {
             cell.setText("X");
             isFirstPlayer = false;
+            activeStatus = TictactoeStatus.XCHECKED;
         }
         else
         {
             cell.setText("O");
             isFirstPlayer = true;
+            activeStatus = TictactoeStatus.OCHECKED;
         }
         numCellChecked++;
         cell.setEnabled(false);
-        mainWindow.getLbStatus().setText("Symbol  " + cell.getText() + "  checked!");
+        mainWindow.getLbStatus().setText(activeStatus.getStatus());
         String winner = LogicGame.getWinner(cells);
         if (winner != null && !winner.isEmpty())
         {
@@ -106,7 +112,8 @@ public class MainController implements ActionListener
         }
         if (numCellChecked == 9)
         {
-            showMessage("GAME FINISH!");
+            activeStatus = TictactoeStatus.GAME_FINISH;
+            showMessage(activeStatus.getStatus());
             saveMatchLogToDB();
         }
     }
@@ -140,8 +147,16 @@ public class MainController implements ActionListener
     public Long saveMatchLogToDB()
     {
         TicTacToeMatch ticTacToeMatch = new TicTacToeMatch(timeSystem.getTimeInMillis(), logFirstPlayer, logWinner, steps);
-        showMessage("SAVED");
         return historyController.saveLog(ticTacToeMatch);
     }
 
+    public Cell[][] getCells()
+    {
+        return cells;
+    }
+
+    public TictactoeStatus getActiveStatus()
+    {
+        return activeStatus;
+    }
 }

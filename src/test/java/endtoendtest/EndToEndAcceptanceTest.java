@@ -164,8 +164,6 @@ public class EndToEndAcceptanceTest
         application.doTickCell("2_2");
         //application.showsCellChar("2_2", "X");
 
-        //X Win then Save to DB
-        application.checksStatusEqual("SAVED");
         application.endGame();
         application.doShowHistory();
         application.showsHistoryFrame();
