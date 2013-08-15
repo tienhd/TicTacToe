@@ -93,7 +93,7 @@ public class EndToEndAcceptanceTest
     }
 
     @Test
-    public void testPlayUtilXWinAtDiagonalThenFinishGame()
+    public void testPlayUtilXWinAndDisableRemainCell()
     {
         application.startGame();
         application.doTickCell("0_0");
@@ -106,7 +106,10 @@ public class EndToEndAcceptanceTest
         //application.showsCellChar("2_1", "O");
         application.doTickCell("2_2");
         //application.showsCellChar("2_2", "X");
-        application.showsXWin();
+        application.doTickCell("2_0");
+        application.showsDisableUncheckedCell("2_0");
+        application.doTickCell("1_2");
+        application.showsDisableUncheckedCell("1_2");
     }
 
     @Test

@@ -144,4 +144,8 @@ public class ApplicationRunner
         MainApp.mainController.setTimeSystem(mockTime);
     }
 
+    public void showsDisableUncheckedCell(String coordinate)
+    {
+       ticTacToeDriver.showsDisableUncheckedCell(coordinate);
+    }
 }

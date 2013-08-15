@@ -116,4 +116,11 @@ public class TicTacToeDriver extends JFrameDriver
         JButtonDriver jButtonDriver = buttonShowHistory();
         jButtonDriver.click();
     }
+
+    public void showsDisableUncheckedCell(String coordinate)
+    {
+        JButtonDriver jButtonDriver = buttonCell(coordinate);
+        jButtonDriver.isNotChecked();
+
+    }
 }

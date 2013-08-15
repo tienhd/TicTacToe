@@ -107,6 +107,7 @@ public class MainController implements ActionListener
         if (winner != null && !winner.isEmpty())
         {
             mainWindow.getLbStatus().setText(winner + " Win!");
+            disableUncheckedCells();
             logWinner = winner;
             saveMatchLogToDB();
         }
@@ -115,6 +116,18 @@ public class MainController implements ActionListener
             activeStatus = TictactoeStatus.GAME_FINISH;
             showMessage(activeStatus.getStatus());
             saveMatchLogToDB();
+        }
+    }
+
+    private void disableUncheckedCells()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                if (!cells[i][j].isSelected())
+                    cells[i][j].setEnabled(false);
+            }
         }
     }
 
