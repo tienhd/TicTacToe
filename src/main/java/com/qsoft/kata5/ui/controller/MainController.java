@@ -1,32 +1,50 @@
-package com.qsoft.kata5;
+package com.qsoft.kata5.ui.controller;
+
+import com.qsoft.kata5.persistence.entity.TicTacToeMatch;
+import com.qsoft.kata5.ui.Cell;
+import com.qsoft.kata5.ui.LogicGame;
+import com.qsoft.kata5.ui.MainWindow;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Calendar;
 
 /**
  * User: thinhdd
  * Date: 8/9/13
  * Time: 10:36 AM
  */
+@Component("mainController")
 public class MainController implements ActionListener
 {
     public final boolean X_PLAYER = true;
     public final boolean O_PLAYER = false;
     boolean isFirstPlayer = true;
     int numCellChecked = 0;
-    MainWindow mainWindow;
+
+    Calendar timeSystem;
+
+    public String steps = "";
+    public String logFirstPlayer = "";
+    public String logWinner = "";
+    public Long lastMatchId = 0L;
+
+    @Autowired
+    private HistoryController historyController;
+
+    @Autowired
+    private MainWindow mainWindow;
     private Cell[][] cells;
 
     public MainController()
     {
-        try
-        {
-            mainWindow = new MainWindow(this);
-        }
-        catch (Exception ex)
-        {
-            ex.printStackTrace();
-        }
+    }
+
+    public void showMainFrame()
+    {
+        mainWindow.setVisible(true);
     }
 
     public void doStartGame()
@@ -38,6 +56,7 @@ public class MainController implements ActionListener
     public void doEndGame()
     {
         mainWindow.getLbStatus().setText("END");
+        saveMatchLogToDB();
     }
 
     public void doBuildBoard()
@@ -63,6 +82,8 @@ public class MainController implements ActionListener
     public void actionPerformed(ActionEvent e)
     {
         Cell cell = (Cell) e.getSource();
+        steps += cell.getName().substring(7, cell.getName().length()) + ",";
+        System.out.println(steps);
         if (isFirstPlayer == X_PLAYER)
         {
             cell.setText("X");
@@ -80,6 +101,7 @@ public class MainController implements ActionListener
         if (winner != null && !winner.isEmpty())
         {
             mainWindow.getLbStatus().setText(winner + " Win!");
+            logWinner = winner;
         }
         if (numCellChecked == 9)
         {
@@ -94,6 +116,29 @@ public class MainController implements ActionListener
         {
             isFirstPlayer = false;
         }
+        logFirstPlayer = symbol;
         System.out.println(symbol);
     }
+
+    public String getSteps()
+    {
+        return steps;
+    }
+
+    public Long getLastMatchId()
+    {
+        return lastMatchId;
+    }
+
+    public void setTimeSystem(Calendar calendar)
+    {
+        this.timeSystem = calendar;
+    }
+
+    public Long saveMatchLogToDB()
+    {
+        TicTacToeMatch ticTacToeMatch = new TicTacToeMatch(timeSystem.getTimeInMillis(), logFirstPlayer, logWinner, steps);
+        return historyController.saveLog(ticTacToeMatch);
+    }
+
 }

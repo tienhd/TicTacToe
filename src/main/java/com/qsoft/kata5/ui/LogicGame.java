@@ -1,4 +1,4 @@
-package com.qsoft.kata5;
+package com.qsoft.kata5.ui;
 
 /**
  * User: BinkaA

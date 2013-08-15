@@ -3,7 +3,7 @@ package endtoendtest;
 import com.objogate.wl.swing.AWTEventQueueProber;
 import com.objogate.wl.swing.driver.*;
 import com.objogate.wl.swing.gesture.GesturePerformer;
-import com.qsoft.kata5.MainWindow;
+import com.qsoft.kata5.ui.MainWindow;
 
 import javax.swing.*;
 

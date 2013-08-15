@@ -1,7 +1,11 @@
-package com.qsoft.kata5;
+package com.qsoft.kata5.ui;
 
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
+import com.qsoft.kata5.ui.controller.HistoryController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import javax.swing.*;
 
@@ -10,20 +14,21 @@ import javax.swing.*;
  * Date: 8/14/13
  * Time: 9:01 AM
  */
+@Component()
+@Scope(value = "prototype")
 public class HistoryWindow extends JFrame
 {
     public static final String HISTORY_WINDOW_NAME = "History Frame";
     private JPanel panel1;
     private JTable tbHistory;
 
+    @Autowired
     private HistoryController historyController;
 
-    public HistoryWindow(HistoryController controller)
+    public HistoryWindow()
     {
         super(HISTORY_WINDOW_NAME);
-        this.historyController = controller;
-
-
+        //this.historyController = controller;
         setTitle(HISTORY_WINDOW_NAME);
         setName(HISTORY_WINDOW_NAME);
         setContentPane(panel1);
@@ -31,7 +36,7 @@ public class HistoryWindow extends JFrame
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(640, 480);
         setLocation(200, 200);
-        setVisible(true);
+        //setVisible(true);
     }
 
     public JTable getTbHistory()

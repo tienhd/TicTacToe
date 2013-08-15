@@ -5,7 +5,7 @@ import com.objogate.wl.swing.driver.JFrameDriver;
 import com.objogate.wl.swing.driver.JTableDriver;
 import com.objogate.wl.swing.driver.JTableHeaderDriver;
 import com.objogate.wl.swing.gesture.GesturePerformer;
-import com.qsoft.kata5.HistoryWindow;
+import com.qsoft.kata5.ui.HistoryWindow;
 
 import javax.swing.table.JTableHeader;
 
@@ -41,11 +41,11 @@ public class HistoryTicTacToeDriver extends JFrameDriver
         }
     }
 
-    public void showsHistoryData(String firstPlayer, String winner, String steps)
+    public void showsHistoryData(Long id, Long timeStamp, String firstPlayer, String winner, String steps)
     {
         //assertion
         JTableDriver tableDriver = new JTableDriver(this);
-        tableDriver.hasRow(matching(withLabelText(firstPlayer), withLabelText(winner), withLabelText(steps)));
+        tableDriver.hasRow(matching(withLabelText(id.toString()), withLabelText(timeStamp.toString()), withLabelText(firstPlayer), withLabelText(winner), withLabelText(steps)));
     }
 
     public void hasColumnTitles()
@@ -55,5 +55,10 @@ public class HistoryTicTacToeDriver extends JFrameDriver
         headers.hasHeaders(
                 matching(withLabelText("Id"), withLabelText("Time"),
                         withLabelText("Start player"), withLabelText("Winner"), withLabelText("Steps")));
+    }
+
+    public void exitGame()
+    {
+        this.dispose();
     }
 }

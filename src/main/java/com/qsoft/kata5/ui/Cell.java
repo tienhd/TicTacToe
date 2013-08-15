@@ -1,4 +1,6 @@
-package com.qsoft.kata5;
+package com.qsoft.kata5.ui;
+
+import com.qsoft.kata5.ui.controller.MainController;
 
 import javax.swing.*;
 import java.awt.*;

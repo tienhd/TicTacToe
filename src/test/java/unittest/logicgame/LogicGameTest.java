@@ -1,7 +1,7 @@
-package unittest;
+package unittest.logicgame;
 
-import com.qsoft.kata5.Cell;
-import com.qsoft.kata5.LogicGame;
+import com.qsoft.kata5.ui.Cell;
+import com.qsoft.kata5.ui.LogicGame;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

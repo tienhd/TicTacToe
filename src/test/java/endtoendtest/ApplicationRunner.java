@@ -1,10 +1,14 @@
 package endtoendtest;
 
-import com.qsoft.kata5.HistoryWindow;
 import com.qsoft.kata5.MainApp;
-import com.qsoft.kata5.MainWindow;
+import com.qsoft.kata5.ui.HistoryWindow;
+import com.qsoft.kata5.ui.MainWindow;
+
+import java.util.Calendar;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * User: tienhd
@@ -18,7 +22,7 @@ public class ApplicationRunner
 
     private void initTicTacToe()
     {
-        MainApp.main();
+        MainApp.main(null);
         ticTacToeDriver = new TicTacToeDriver(3000);
         ticTacToeDriver.hasTitle(MainWindow.MAIN_WINDOW_NAME);
     }
@@ -48,6 +52,7 @@ public class ApplicationRunner
     public void exitGame()
     {
         ticTacToeDriver.exitGame();
+        historyTicTacToeDriver.exitGame();
     }
 
     public void showsGameStatusStarted()
@@ -122,9 +127,17 @@ public class ApplicationRunner
 //        historyTicTacToeDriver.showsHistoryData();
 //    }
 
-    public void showsTableHasLastMatch(String firstPlayer, String winner, String steps)
+    public void showsTableHasLastMatch(Long id, Long timeStamp, String firstPlayer, String winner, String steps)
     {
         initHistoryTicTacToe();
-        historyTicTacToeDriver.showsHistoryData(firstPlayer, winner, steps);
+        historyTicTacToeDriver.showsHistoryData(id, timeStamp, firstPlayer, winner, steps);
     }
+
+    public void setTimeSystemToTestMode()
+    {
+        Calendar mockTime = mock(Calendar.class);
+        when(mockTime.getTimeInMillis()).thenReturn(1111111L);
+        MainApp.mainController.setTimeSystem(mockTime);
+    }
+
 }

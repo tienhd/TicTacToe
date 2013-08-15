@@ -1,5 +1,12 @@
 package com.qsoft.kata5;
 
+import com.qsoft.kata5.ui.controller.HistoryController;
+import com.qsoft.kata5.ui.controller.MainController;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.util.Calendar;
+
 /**
  * User: tienhd
  * Date: 8/8/13
@@ -7,18 +14,15 @@ package com.qsoft.kata5;
  */
 public class MainApp
 {
+    public static Calendar timeSystem = Calendar.getInstance();
+    public static MainController mainController;
+
     public static void main(String[] args)
     {
-        main();
-    }
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-config.xml");
+        mainController = (MainController) applicationContext.getBean("mainController");
+        mainController.showMainFrame();
 
-    public static void main()
-    {
-        new MainController();
-    }
-
-    public static void history()
-    {
-        new HistoryController();
+        HistoryController historyController = (HistoryController) applicationContext.getBean("historyController");
     }
 }

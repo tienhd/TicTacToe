@@ -1,10 +1,14 @@
-package com.qsoft.kata5;
+package com.qsoft.kata5.ui;
 
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
+import com.qsoft.kata5.ui.controller.HistoryController;
+import com.qsoft.kata5.ui.controller.MainController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,6 +22,8 @@ import java.awt.event.ActionListener;
  * Time: 6:01 PM
  * To change this template use File | Settings | File Templates.
  */
+@org.springframework.stereotype.Component()
+@Scope(value = "prototype")
 public class MainWindow extends JFrame
 {
     public static final String MAIN_WINDOW_NAME = "Tic Tac Toe Main";
@@ -36,14 +42,20 @@ public class MainWindow extends JFrame
     private JRadioButton xRadioButton;
     private JRadioButton oRadioButton;
     private JButton showHistoryButton;
+
+    @Autowired
     private MainController mainController;
+
+    @Autowired
     private HistoryController historyController;
+
     private Cell[][] cells = new Cell[3][3];
 
-    public MainWindow(final MainController mainController)
+    public MainWindow()
     {
         super(MAIN_WINDOW_NAME);
-        this.mainController = mainController;
+//        this.mainController = mainController;
+//        this.historyController = historyController;
         $$$setupUI$$$();
         setTitle(MAIN_WINDOW_NAME);
         setName(MAIN_WINDOW_NAME);
@@ -51,7 +63,7 @@ public class MainWindow extends JFrame
         pack();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(800, 600);
-        setVisible(true);
+        //setVisible(true);
         lbStatus.setFont(new Font("", Font.BOLD, 30));
         btnStartGame.addActionListener(new ActionListener()
         {
@@ -91,7 +103,7 @@ public class MainWindow extends JFrame
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                historyController = new HistoryController();
+                historyController.showHistoryFrame();
             }
         });
     }

@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <HISTORY id='1' first_player='X' winner='X' time_stamp="1999999999" steps="0_0,1_0,1_1,2_1,2_2"/>
+    <HISTORY id='2' first_player='X' winner='X' time_stamp="2999999999" steps="0_0,1_0,1_1,2_1,2_2"/>
+</dataset>
