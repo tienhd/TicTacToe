@@ -21,6 +21,7 @@ public class MainApp
     {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-config.xml");
         mainController = (MainController) applicationContext.getBean("mainController");
+        mainController.setTimeSystem(timeSystem);
         mainController.showMainFrame();
 
         HistoryController historyController = (HistoryController) applicationContext.getBean("historyController");

@@ -52,7 +52,11 @@ public class ApplicationRunner
     public void exitGame()
     {
         ticTacToeDriver.exitGame();
-        historyTicTacToeDriver.exitGame();
+        if (historyTicTacToeDriver != null)
+        {
+            historyTicTacToeDriver.exitGame();
+        }
+
     }
 
     public void showsGameStatusStarted()
